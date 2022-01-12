@@ -4,10 +4,17 @@
  */
 package com.mycompany.comunidad;
 
+import multichain.command.CommandManager;
+
 /**
  *
  * @author AndresF
  */
+import multichain.command.CommandManager;
+import multichain.object.StreamKeyItem;
+import multichain.command.MultichainException;
+import multichain.command.CommandElt;
+import com.google.gson.JsonObject;
 public class Individuo extends javax.swing.JFrame {
 
     /**
@@ -33,7 +40,7 @@ public class Individuo extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Registrar Individuo");
 
@@ -115,11 +122,25 @@ public class Individuo extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
+        String numero = jTextField1.getText();
+        String nombre = jTextField2.getText();
+        models.Individuo individuo = new models.Individuo(numero, nombre);
+        try{
+            /* descomentar para volver a subscribirse
+            Main.commandManager.invoke(CommandElt.SUBSCRIBE, "individuos") */
+            Main.commandManager.invoke(CommandElt.PUBLISH,"individuos",numero,individuo.toJson());
+            jTextField1.setText("");
+            jTextField2.setText("");
+        }
+        catch (MultichainException e){
+             e.printStackTrace();
+         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
-    public static void executeI() {
+    public static void executeI(CommandManager commandManager) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

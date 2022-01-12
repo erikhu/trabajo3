@@ -4,6 +4,13 @@
  */
 package com.mycompany.comunidad;
 
+import java.util.LinkedList;
+import java.util.List;
+import multichain.command.CommandElt;
+import multichain.command.MultichainException;
+import multichain.object.StreamKey;
+import multichain.object.StreamKeyItem;
+
 /**
  *
  * @author AndresF
@@ -31,14 +38,13 @@ public class Antecedentes extends javax.swing.JFrame {
         jPopupMenu2 = new javax.swing.JPopupMenu();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -64,28 +70,12 @@ public class Antecedentes extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Antecedentes");
 
-        jCheckBox1.setText("Tipo de Delito");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
-            }
-        });
-
-        jCheckBox2.setText("Identificacion");
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = {};
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -98,62 +88,166 @@ public class Antecedentes extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButton3);
+        jRadioButton3.setText("Delito");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButton4);
+        jRadioButton4.setText("Identificacion");
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox2))
-                .addGap(56, 56, 56))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(139, 139, 139)
+                                .addComponent(jButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(17, 17, 17)
+                        .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(152, 152, 152)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(83, 83, 83)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 2, Short.MAX_VALUE)
-                        .addComponent(jCheckBox1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jCheckBox2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addGap(48, 48, 48)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton3)
+                    .addComponent(jRadioButton4))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(jButton1)
-                .addGap(61, 61, 61))
+                .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        CAntecedentes CA = new CAntecedentes();
+        List<StreamKeyItem> keys;
+        String op = jList2.getSelectedValue();
+        String mostrar = "";
+        try{
+           if (op.equals("Leve")){
+               keys = (List<StreamKeyItem>) Main.commandManager.invoke(CommandElt.LISTSTREAMKEYITEMS,"antecedentes","1");
+               for (StreamKeyItem key : keys) {
+                   List<String> ids = key.getKeys();
+                   String id = ids.get(0);
+                   List<StreamKeyItem>   nombres = (List<StreamKeyItem>) Main.commandManager.invoke(CommandElt.LISTSTREAMKEYITEMS,"individuos",id);
+                   for (StreamKeyItem nombre : nombres) {
+                       mostrar += nombre.getData() + "\n";
+                   }
+                   mostrar += key.getData() +"\n";
+               }
+               CA.jTextArea1.setText(mostrar);
+               CA.setVisible(true);
+           }
+           else if (op.equals("Comun")){
+                keys = (List<StreamKeyItem>) Main.commandManager.invoke(CommandElt.LISTSTREAMKEYITEMS,"antecedentes","2");
+                for (StreamKeyItem key : keys) {
+                   List<String> ids = key.getKeys();
+                   String id = ids.get(0);
+                   List<StreamKeyItem>   nombres = (List<StreamKeyItem>) Main.commandManager.invoke(CommandElt.LISTSTREAMKEYITEMS,"individuos",id);
+                   for (StreamKeyItem nombre : nombres) {
+                       mostrar += nombre.getData() + "\n";
+                   }
+                   mostrar += key.getData() +"\n";
+               }
+               CA.jTextArea1.setText(mostrar);
+               CA.setVisible(true);
+           }
+           else if (op.equals("Grave")){
+                keys = (List<StreamKeyItem>) Main.commandManager.invoke(CommandElt.LISTSTREAMKEYITEMS,"antecedentes","3");
+                for (StreamKeyItem key : keys) {
+                   List<String> ids = key.getKeys();
+                   String id = ids.get(0);
+                   List<StreamKeyItem>   nombres = (List<StreamKeyItem>) Main.commandManager.invoke(CommandElt.LISTSTREAMKEYITEMS,"individuos",id);
+                   for (StreamKeyItem nombre : nombres) {
+                       mostrar += nombre.getData() + "\n";
+                   }
+                   mostrar += key.getData() +"\n";
+               }
+               CA.jTextArea1.setText(mostrar);
+               CA.setVisible(true);
+           }
+           else {
+               keys = (List<StreamKeyItem>) Main.commandManager.invoke(CommandElt.LISTSTREAMKEYITEMS,"antecedentes",op);
+                for (StreamKeyItem key : keys) {
+                   List<String> ids = key.getKeys();
+                   String id = ids.get(0);
+                   List<StreamKeyItem>   nombres = (List<StreamKeyItem>) Main.commandManager.invoke(CommandElt.LISTSTREAMKEYITEMS,"individuos",id);
+                   mostrar += nombres.get(0).getData() + "\n";
+                   mostrar += key.getData() +"\n";
+                   }
+               }
+               CA.jTextArea1.setText(mostrar);
+               CA.setVisible(true);
+           }
+ 
+        catch (MultichainException e){
+             e.printStackTrace();
+         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+            jList2.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Leve", "Comun", "Grave"};
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+         List<StreamKey> keys;
+        LinkedList<String> keys2 = new LinkedList<>();
+        try{
+            Main.commandManager.invoke(CommandElt.SUBSCRIBE, "individuos");
+            keys = (List<StreamKey>) Main.commandManager.invoke(CommandElt.LISTSTREAMKEYS,"individuos");
+            for (StreamKey key : keys) {
+                keys2.add(key.getKey());
+            }
+        }
+        catch (MultichainException e){
+            e.printStackTrace();
+        }
+        Object[] objectAarray = keys2.toArray();
+        int length = objectAarray.length;;
+        String [] arraystrings = new String[length];
+        for(int i =0; i < length; i++) {
+            arraystrings[i] = (String) objectAarray[i];
+        }
+        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = arraystrings;
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
 
 
     public static void executeA2() {
@@ -189,16 +283,15 @@ public class Antecedentes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;

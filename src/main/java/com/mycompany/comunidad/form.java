@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.comunidad;
+import multichain.command.CommandManager;
+import multichain.object.StreamKeyItem;
+import multichain.command.MultichainException;
+import multichain.command.CommandElt;
 
 /**
  *

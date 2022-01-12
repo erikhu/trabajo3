@@ -8,29 +8,21 @@ package com.mycompany.comunidad;
 import java.util.List;
 import multichain.command.CommandManager;
 import multichain.object.StreamKeyItem;
+import multichain.object.StreamKey;
 import multichain.command.MultichainException;
 import multichain.command.CommandElt;
+import com.google.gson.JsonObject;
+import java.util.LinkedList;
 /**
  *
  * @author julia
  */
 public class Main {
-     public static void main(String args[]) {
-         Form.execute();
-         CommandManager commandManager = new CommandManager("localhost",     "6818", "multichainrpc","7hzmTeY82P9mSd3MpMuwEPqG8sxPu4rVmgaBqitjPLEw");
-         List<StreamKeyItem> items;
-         
-         try{
-             commandManager.invoke(CommandElt.SUBSCRIBE, "individuos");
-             items = (List<StreamKeyItem>) commandManager.invoke(CommandElt.LISTSTREAMKEYITEMS,"individuos","11");
-             
-             for (StreamKeyItem item : items) {
-                 System.out.println(item);
-             }
-             
-         }
-         catch (MultichainException e){
-             e.printStackTrace();
-         }
+    public static CommandManager commandManager;
+    static{
+        Main.commandManager = new CommandManager("localhost",     "6818", "multichainrpc","7hzmTeY82P9mSd3MpMuwEPqG8sxPu4rVmgaBqitjPLEw");
+    }
+    public static void main(String args[]) {      
+        Form.execute();
      }
 }
