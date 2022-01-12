@@ -4,10 +4,32 @@
  */
 package com.mycompany.comunidad;
 
+
+import java.util.List;
+import multichain.command.CommandManager;
+import multichain.object.StreamKeyItem;
+import multichain.command.MultichainException;
+import multichain.command.CommandElt;
 /**
  *
  * @author julia
  */
 public class multichain {
-    
+     public static void main(String args[]) {
+         CommandManager commandManager = new CommandManager("localhost",     "6818", "multichainrpc","7hzmTeY82P9mSd3MpMuwEPqG8sxPu4rVmgaBqitjPLEw");
+         List<StreamKeyItem> items;
+         
+         try{
+             commandManager.invoke(CommandElt.SUBSCRIBE, "individuos");
+             items = (List<StreamKeyItem>) commandManager.invoke(CommandElt.LISTSTREAMKEYITEMS,"individuos","11");
+             
+             for (StreamKeyItem item : items) {
+                 System.out.println(item);
+             }
+             
+         }
+         catch (MultichainException e){
+             e.printStackTrace();
+         }
+     }
 }
