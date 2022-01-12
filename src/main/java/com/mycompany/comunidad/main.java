@@ -14,8 +14,9 @@ import multichain.command.CommandElt;
  *
  * @author julia
  */
-public class multichain {
+public class Main {
      public static void main(String args[]) {
+         Form.execute();
          CommandManager commandManager = new CommandManager("localhost",     "6818", "multichainrpc","7hzmTeY82P9mSd3MpMuwEPqG8sxPu4rVmgaBqitjPLEw");
          List<StreamKeyItem> items;
          
